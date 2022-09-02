@@ -9,11 +9,29 @@
 //    h5 > span    (este span debe mostrar la cantidad si es mayor a 0 "agotado" si llega a 0)
 //    button       (este boton debe permitir comprar, pero si la cantidad es menor a 0 debe estar deshabilitado y decir "Sin stock")
 
-export default function Item() {
+export default function Item({item, setElementos, elementos}) {
+
+  const comprar = () => {
+    if(item.stock > 0){
+      console.log("entre en el if")
+      item.stock = item.stock -1
+      setElementos(elementos = elementos + 1)
+    }
+  }
 
   return (
     <div className='producto'>
-      {/* maquetar Item aquí */}
+
+      <h3>{item.producto.nombre}</h3>
+      <p>{item.producto.descripcion}</p>
+      <h5> En stock: {item.stock > 0 ? item.stock : <span>agotado</span>}</h5>
+      <button 
+        onClick = {comprar}
+        disabled = {item.stock <= 0}
+        >
+          {item.stock > 0 ? "Comprar" : "Agotado"}
+      </button>
+
     </div>
   )
 }
