@@ -12,10 +12,9 @@
 export default function Item({item, setElementos, elementos}) {
 
   const comprar = () => {
-    if(item.stock > 0){
-      console.log("entre en el if")
-      item.stock = item.stock -1
-      setElementos(elementos = elementos + 1)
+    if(item.stock > 0){      
+      item.stock -= 1
+      setElementos(elementos += 1)
     }
   }
 
@@ -29,7 +28,7 @@ export default function Item({item, setElementos, elementos}) {
         onClick = {comprar}
         disabled = {item.stock <= 0}
         >
-          {item.stock > 0 ? "Comprar" : "Agotado"}
+          {item.stock > 0 ? "COMPRAR" : "SIN STOCK"}
       </button>
 
     </div>
